@@ -1,0 +1,16 @@
+spring:
+  cloud:
+    kubernetes:
+      
+      secrets:
+        name: mongo-secret
+
+      config:
+        enabled: true
+        sources:
+          - namespace: default
+            name: mongo-conf
+      reload:
+        enabled: true
+        mode: polling
+        period: 1000

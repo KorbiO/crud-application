@@ -1,0 +1,55 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: crud-application-service
+spec:
+  selector:
+    app: crud-application-service
+  ports:
+  - protocol: TCP
+    port: 8009
+    nodePort: 30081
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crud-application-service
+spec:
+  selector:
+      matchLabels:
+        app: crud-application-service
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: crud-application-service
+    spec:
+      containers:
+        - name: crud-application-service
+          imagePullPolicy: Always
+          image: omarkorbi/crud-application-service
+          ports:
+          - containerPort: 8009
+          env:
+            - name: MONGO_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: username
+            - name: MONGO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: password
+            - name: MONGO_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: mongo-conf  
+                  key: database
+            - name: MONGO_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: mongo-conf 
+                  key: host
+                
