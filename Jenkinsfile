@@ -36,10 +36,10 @@ pipeline {
      stage('Run Kubernetes'){
     	steps{
     		
-    		bat 'kubectl --kubeconfig ./config apply -f k8s/mongo-config.yaml'
-    		bat 'kubectl --kubeconfig ./config apply -f k8s/mongo-secret.yaml'
-    		bat 'kubectl --kubeconfig ./config apply -f k8s/mongo-deployment.yaml'
-   	   		bat 'kubectl --kubeconfig ./config apply -f k8s/dep.yaml'
+    		bat 'kubectl --kubeconfig ./config apply -f mongo-config.yaml'
+    		bat 'kubectl --kubeconfig ./config apply -f mongo-secret.yaml'
+    		bat 'kubectl --kubeconfig ./config apply -f mongo-deployment.yaml'
+   	   		bat 'kubectl --kubeconfig ./config apply -f dep.yaml'
    	   		}
     }
      
