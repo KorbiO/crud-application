@@ -19,16 +19,16 @@ spec:
   selector:
       matchLabels:
         app: crud-application-service
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
         app: crud-application-service
     spec:
       containers:
-        - name: crud-application-service
+        - name: crud-application
           imagePullPolicy: Always
-          image: omarkorbi/crud-application-service
+          image: omarkorbi/crud-application
           ports:
           - containerPort: 8009
           env:
