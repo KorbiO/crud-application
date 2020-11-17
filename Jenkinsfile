@@ -39,7 +39,7 @@ pipeline {
     stage('Push Docker Image'){
      	steps{
 	        bat 'docker login -u omarkorbi -p gotktpas123'
-	  		bat 'docker tag crud-application:latest omarkorbi/crud-application '
+	  		bat 'docker tag omarkorbi/crud-application:latest omarkorbi/crud-application '
 	  		bat 'docker push omarkorbi/crud-application'
 	  		}
     }
